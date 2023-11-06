@@ -1,0 +1,559 @@
+Queries Questions:
+
+Create table Employee with attributes empid, empname, designation,  stream, city 
+Create table worker with attributes empname, salary, CompanyName 
+Create company with attributes CompanyName, ManagerName				
+				
+1. Insert 15 Records for each (Use indian Recordes only name, comapny)				
+				
+2. Display all employee name of all table using union operation				
+				
+3. Display all employee earning more than 30000				
+				
+4. Display employee who works for tcs				
+				
+5.  3. Display all employee earning more than 25000 and work for wipro 
+
+6. display all employee data 
+
+7. Add display all employee who work under manager Rahul 
+
+8. Add attributes companyName in Employee table 
+
+9. Display company located in mumbai 
+
+10. Display city wise employee details  
+
+11. Display highest salary of employee data  
+
+12. Display lowest salary of employee data  
+
+13. Create view on a single table using at least 3 columns 
+
+14. create a view using multiple tables and display
+
++-------+----------------+-------------+----------+------+------------+--------+-------+----------------+-------------+----------+------+------------+--------+
+Queries Answers:
+
+Create table Employee with attributes empid, empname, designation,  stream, city 
+Create table worker with attributes empname, salary, CompanyName 
+Create company with attributes CompanyName, ManagerName		
+
+-- Employee table
+CREATE TABLE Employee (
+    empid INT PRIMARY KEY,
+    empname VARCHAR(255),
+    designation VARCHAR(255),
+    stream VARCHAR(255),
+    city VARCHAR(255),
+    companyName VARCHAR(255)
+);
+
+-- Worker table
+CREATE TABLE Worker (
+    empname VARCHAR(255),
+    salary DECIMAL(10, 2),
+    CompanyName VARCHAR(255)
+);
+
+-- Company table
+CREATE TABLE Company (
+    CompanyName VARCHAR(255) PRIMARY KEY,
+    ManagerName VARCHAR(255)
+);
+		
+				
+1. Insert 15 Records for each (Use indian Recordes only name, comapny)		
+
+INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES
+(1, 'Rahul', 'Manager', 'Engineering', 'Mumbai', 'TCS');
+INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES
+(2, 'Rajesh', 'Developer', 'Engineering', 'Delhi', 'Infosys');
+INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES
+(3, 'Priya', 'Analyst', 'Management', 'Kolkata', 'Wipro');
+INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES
+(4, 'Sneha', 'Designer', 'Engineering', 'Bangalore', 'Infosys');
+INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES
+(5, 'Neha', 'Manager', 'Engineering', 'Pune', 'Infosys');
+INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES
+(6, 'Rahul', 'Developer', 'Engineering', 'Nashik', 'TCS');
+INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES
+(7, 'Suman', 'Analyst', 'Management', 'Mumbai', 'Wipro');
+INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES
+(8, 'Ankit', 'Designer', 'Engineering', 'Delhi', 'Infosys');
+INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES
+(9, 'Snehal', 'Manager', 'Engineering', 'Ahmedabad', 'Wipro');
+INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES
+(10, 'Kavita', 'Developer', 'Engineering', 'Bangalore', 'TCS');
+INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES
+(11, 'Nitin', 'Analyst', 'Management', 'Kolkata', 'Wipro');
+INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES
+(12, 'Sanjana', 'Designer', 'Engineering', 'Pune', 'Infosys');
+INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES
+(13, 'Ravi', 'Designer', 'Engineering', 'Mumbai', 'TCS');
+INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES
+(14, 'Anjali', 'Developer', 'Engineering', 'Delhi', 'Infosys');
+INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES
+(15, 'Rajat', 'Analyst', 'Management', 'Bangalore', 'Wipro');
+
+INSERT INTO Worker (empname, salary, CompanyName)VALUES
+('Rahul', 60000.00, 'TCS');
+INSERT INTO Worker (empname, salary, CompanyName)VALUES
+('Rajesh', 55000.00, 'Infosys');
+INSERT INTO Worker (empname, salary, CompanyName)VALUES
+('Priya', 50000.00, 'Wipro');
+INSERT INTO Worker (empname, salary, CompanyName)VALUES
+('Sneha', 52000.00, 'Infosys');
+INSERT INTO Worker (empname, salary, CompanyName)VALUES
+('Neha', 58000.00, 'Insosys');
+INSERT INTO Worker (empname, salary, CompanyName)VALUES
+('Rahul', 48000.00, 'TCS');
+INSERT INTO Worker (empname, salary, CompanyName)VALUES
+('Suman', 49000.00, 'Wipro');
+INSERT INTO Worker (empname, salary, CompanyName)VALUES
+('Ankit', 53000.00, 'Infosys');
+INSERT INTO Worker (empname, salary, CompanyName)VALUES
+('Snehal', 62000.00, 'Wipro');
+INSERT INTO Worker (empname, salary, CompanyName)VALUES
+('Kavita', 55000.00, 'TCS');
+INSERT INTO Worker (empname, salary, CompanyName)VALUES
+('Nitin', 50000.00, 'Wipro');
+INSERT INTO Worker (empname, salary, CompanyName)VALUES
+('Sanjana', 52000.00, 'Infosys');
+INSERT INTO Worker (empname, salary, CompanyName)VALUES
+('Ravi', 60000.00, 'TCS');
+INSERT INTO Worker (empname, salary, CompanyName)VALUES
+('Anjali', 55000.00, 'Infosys');
+INSERT INTO Worker (empname, salary, CompanyName)VALUES
+('Rajat', 49000.00, 'Wipro');
+
+INSERT INTO Company (CompanyName, ManagerName)VALUES
+('TCS', 'Rahul');
+INSERT INTO Company (CompanyName, ManagerName)VALUES
+('Infosys', 'Neha');
+INSERT INTO Company (CompanyName, ManagerName)VALUES
+('Wipro', 'Snehal');
+		
+				
+2. Display all employee name of all table using union operation		
+
+SELECT empname FROM Employee
+UNION
+SELECT empname FROM Worker
+UNION
+SELECT ManagerName FROM Company;
+		
+				
+3. Display all employee earning more than 30000	
+SELECT empname, salary FROM Worker WHERE salary > 30000;			
+				
+4. Display employee who works for tcs		
+SELECT empid, empname, designation, stream, city
+FROM Employee
+WHERE companyName = 'TCS';
+
+				
+5. Display all employee earning more than 25000 and work for wipro 
+SELECT e.empname,e.companyName, w.salary
+FROM Employee e
+INNER JOIN Worker w ON e.empname = w.empname
+WHERE w.salary > 25000 AND e.companyName = 'Wipro';
+
+6. display all employee data 
+SELECT * FROM Employee;
+
+
+7. Add display all employee who work under manager Rahul 
+
+SELECT e.empid, e.empname, e.designation, e.stream, e.city
+FROM Employee e
+WHERE e.empname IN (
+    SELECT w.empname
+    FROM Worker w
+    WHERE w.CompanyName = (SELECT CompanyName FROM Company WHERE ManagerName = 'Rahul')
+);
+
+
+8. Add attributes companyName in Employee table 
+ALTER TABLE Employee
+ADD companyName VARCHAR(255);
+
+
+9. Display company located in mumbai 
+SELECT *
+FROM Company
+WHERE ManagerName IN (SELECT empname FROM Employee WHERE city = 'Mumbai');
+
+
+10. Display city wise employee details  
+SELECT * 
+FROM Employee 
+ORDER BY city ASC;
+
+
+11. Display highest salary of employee data  
+SELECT MAX(salary) AS HighestSalary FROM Worker;
+
+
+12. Display lowest salary of employee data  
+SELECT MIN(salary) AS LowestSalary FROM Worker;
+
+
+13. Create view on a single table using at least 3 columns 
+CREATE VIEW EmployeeView AS
+SELECT empid, empname, city
+FROM Employee;
+
+SELECT * FROM EmployeeView;
+
+
+14. create a view using multiple tables and display
+CREATE VIEW EmployeeCompanyView AS
+SELECT e.empname, e.designation, w.CompanyName
+FROM Employee e
+INNER JOIN Worker w ON e.empname = w.empname;
+
+SELECT * FROM EmployeeCompanyView;
+
+
+
++-------+----------------+-------------+----------+------+------------+--------+-------+----------------+-------------+----------+------+------------+--------+
+OUTPUT:
+
+CREATE TABLE Employee (empid INT PRIMARY KEY, empname VARCHAR(255), designation VARCHAR(255), salary DECIMAL(10, 2), age INT, doj DATE, city VARCHAR(255));
+
+Microsoft Windows [Version 10.0.22621.2283]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\LENOVO>mysql -u root -p
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> USE KBTCOE;
+Database changed
+
+
+
+mysql> CREATE TABLE Employee (empid INT PRIMARY KEY, empname VARCHAR(255), designation VARCHAR(255), stream VARCHAR(255), city VARCHAR(255),companyName VARCHAR(255));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE Worker (empname VARCHAR(255),salary DECIMAL(10, 2),CompanyName VARCHAR(255));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE Company (CompanyName VARCHAR(255) PRIMARY KEY,ManagerName VARCHAR(255));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES(1, 'Rahul', 'Manager', 'Engineering', 'Mumbai', 'TCS');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES(2, 'Rajesh', 'Developer', 'Engineering', 'Delhi', 'Infosys');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES(3, 'Priya', 'Analyst', 'Management', 'Kolkata', 'Wipro');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES(4, 'Sneha', 'Designer', 'Engineering', 'Bangalore', 'Infosys');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES(5, 'Neha', 'Manager', 'Engineering', 'Pune', 'Infosys');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES(6, 'Rahul', 'Developer', 'Engineering', 'Nashik', 'TCS');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES(7, 'Suman', 'Analyst', 'Management', 'Mumbai', 'Wipro');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES(8, 'Ankit', 'Designer', 'Engineering', 'Delhi', 'Infosys');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES(9, 'Snehal', 'Manager', 'Engineering', 'Ahmedabad', 'Wipro');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES(10, 'Kavita', 'Developer', 'Engineering', 'Bangalore', 'TCS');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES(11, 'Nitin', 'Analyst', 'Management', 'Kolkata', 'Wipro');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES(12, 'Sanjana', 'Designer', 'Engineering', 'Pune', 'Infosys');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES(13, 'Ravi', 'Designer', 'Engineering', 'Mumbai', 'TCS');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES(14, 'Anjali', 'Developer', 'Engineering', 'Delhi', 'Infosys');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empid, empname, designation, stream, city, companyName)VALUES(15, 'Rajat', 'Analyst', 'Management', 'Bangalore', 'Wipro');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Worker (empname, salary, CompanyName)VALUES('Rahul', 60000.00, 'TCS');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Worker (empname, salary, CompanyName)VALUES('Rajesh', 55000.00, 'Infosys');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Worker (empname, salary, CompanyName)VALUES('Priya', 50000.00, 'Wipro');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Worker (empname, salary, CompanyName)VALUES('Sneha', 52000.00, 'Infosys');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Worker (empname, salary, CompanyName)VALUES('Neha', 58000.00, 'Insosys');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Worker (empname, salary, CompanyName)VALUES('Rahul', 48000.00, 'TCS');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Worker (empname, salary, CompanyName)VALUES('Suman', 49000.00, 'Wipro');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Worker (empname, salary, CompanyName)VALUES('Ankit', 53000.00, 'Infosys');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Worker (empname, salary, CompanyName)VALUES('Snehal', 62000.00, 'Wipro');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Worker (empname, salary, CompanyName)VALUES('Kavita', 55000.00, 'TCS');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Worker (empname, salary, CompanyName)VALUES('Nitin', 50000.00, 'Wipro');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Worker (empname, salary, CompanyName)VALUES('Sanjana', 52000.00, 'Infosys');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Worker (empname, salary, CompanyName)VALUES('Ravi', 60000.00, 'TCS');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Worker (empname, salary, CompanyName)VALUES('Anjali', 55000.00, 'Infosys');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Worker (empname, salary, CompanyName)VALUES('Rajat', 49000.00, 'Wipro');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Company (CompanyName, ManagerName)VALUES('TCS', 'Rahul');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Company (CompanyName, ManagerName)VALUES('Infosys', 'Neha');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Company (CompanyName, ManagerName)VALUES('Wipro', 'Snehal');
+Query OK, 1 row affected (0.01 sec)
+
+
+mysql> SELECT empname FROM Employee UNION SELECT empname FROM Worker UNION SELECT ManagerName FROM Company;
++---------+
+| empname |
++---------+
+| Rahul   |
+| Rajesh  |
+| Priya   |
+| Sneha   |
+| Neha    |
+| Suman   |
+| Ankit   |
+| Snehal  |
+| Kavita  |
+| Nitin   |
+| Sanjana |
+| Ravi    |
+| Anjali  |
+| Rajat   |
++---------+
+14 rows in set (0.01 sec)
+
+
+mysql> SELECT empname, salary FROM Worker WHERE salary > 30000;
++---------+----------+
+| empname | salary   |
++---------+----------+
+| Rahul   | 60000.00 |
+| Rajesh  | 55000.00 |
+| Priya   | 50000.00 |
+| Sneha   | 52000.00 |
+| Neha    | 58000.00 |
+| Rahul   | 48000.00 |
+| Suman   | 49000.00 |
+| Ankit   | 53000.00 |
+| Snehal  | 62000.00 |
+| Kavita  | 55000.00 |
+| Nitin   | 50000.00 |
+| Sanjana | 52000.00 |
+| Ravi    | 60000.00 |
+| Anjali  | 55000.00 |
+| Rajat   | 49000.00 |
++---------+----------+
+15 rows in set (0.00 sec)
+
+
+mysql> SELECT empid, empname, designation, stream, city FROM Employee WHERE companyName = 'TCS';
++-------+---------+-------------+-------------+-----------+
+| empid | empname | designation | stream      | city      |
++-------+---------+-------------+-------------+-----------+
+|     1 | Rahul   | Manager     | Engineering | Mumbai    |
+|     6 | Rahul   | Developer   | Engineering | Nashik    |
+|    10 | Kavita  | Developer   | Engineering | Bangalore |
+|    13 | Ravi    | Designer    | Engineering | Mumbai    |
++-------+---------+-------------+-------------+-----------+
+4 rows in set (0.00 sec)
+
+
+mysql> SELECT e.empname,e.companyName, w.salary FROM Employee e INNER JOIN Worker w ON e.empname = w.empname WHERE w.salary > 25000 AND e.companyName = 'Wipro';
++---------+----------+-------------+
+| empname | salary   | companyName |
++---------+----------+-------------+
+| Priya   | 50000.00 |	  Wipro    |
+| Suman   | 49000.00 |	  Wipro    | 
+| Snehal  | 62000.00 | 	  Wipro    |
+| Nitin   | 50000.00 |	  Wipro    |
+| Rajat   | 49000.00 |	  Wipro    |
++---------+----------+-------------+
+5 rows in set (0.01 sec)
+
+
+mysql> SELECT * FROM Employee;
++-------+---------+-------------+-------------+-----------+-------------+
+| empid | empname | designation | stream      | city      | companyName |
++-------+---------+-------------+-------------+-----------+-------------+
+|     1 | Rahul   | Manager     | Engineering | Mumbai    | TCS         |
+|     2 | Rajesh  | Developer   | Engineering | Delhi     | Infosys     |
+|     3 | Priya   | Analyst     | Management  | Kolkata   | Wipro       |
+|     4 | Sneha   | Designer    | Engineering | Bangalore | Infosys     |
+|     5 | Neha    | Manager     | Engineering | Pune      | Infosys     |
+|     6 | Rahul   | Developer   | Engineering | Nashik    | TCS         |
+|     7 | Suman   | Analyst     | Management  | Mumbai    | Wipro       |
+|     8 | Ankit   | Designer    | Engineering | Delhi     | Infosys     |
+|     9 | Snehal  | Manager     | Engineering | Ahmedabad | Wipro       |
+|    10 | Kavita  | Developer   | Engineering | Bangalore | TCS         |
+|    11 | Nitin   | Analyst     | Management  | Kolkata   | Wipro       |
+|    12 | Sanjana | Designer    | Engineering | Pune      | Infosys     |
+|    13 | Ravi    | Designer    | Engineering | Mumbai    | TCS         |
+|    14 | Anjali  | Developer   | Engineering | Delhi     | Infosys     |
+|    15 | Rajat   | Analyst     | Management  | Bangalore | Wipro       |
++-------+---------+-------------+-------------+-----------+-------------+
+15 rows in set (0.00 sec)
+
+SELECT w.empname FROM Worker w WHERE w.CompanyName = (SELECT Comp' at line 1
+mysql> SELECT e.empid, e.empname, e.designation, e.stream, e.city FROM Employee e WHERE e.empname IN (SELECT w.empname FROM Worker w WHERE w.CompanyName = (SELECT CompanyName FROM Company WHERE ManagerName = 'Rahul'));
++-------+---------+-------------+-------------+-----------+
+| empid | empname | designation | stream      | city      |
++-------+---------+-------------+-------------+-----------+
+|     1 | Rahul   | Manager     | Engineering | Mumbai    |
+|     6 | Rahul   | Developer   | Engineering | Nashik    |
+|    10 | Kavita  | Developer   | Engineering | Bangalore |
+|    13 | Ravi    | Designer    | Engineering | Mumbai    |
++-------+---------+-------------+-------------+-----------+
+4 rows in set (0.01 sec)
+
+
+mysql> SELECT * FROM Company WHERE ManagerName IN (SELECT empname FROM Employee WHERE city = 'Mumbai');
++-------------+-------------+
+| CompanyName | ManagerName |
++-------------+-------------+
+| TCS         | Rahul       |
++-------------+-------------+
+1 row in set (0.00 sec)
+
+
+mysql> SELECT * FROM Employee ORDER BY city ASC;\
++-------+---------+-------------+-------------+-----------+-------------+
+| empid | empname | designation | stream      | city      | companyName |
++-------+---------+-------------+-------------+-----------+-------------+
+|     9 | Snehal  | Manager     | Engineering | Ahmedabad | Wipro       |
+|     4 | Sneha   | Designer    | Engineering | Bangalore | Infosys     |
+|    10 | Kavita  | Developer   | Engineering | Bangalore | TCS         |
+|    15 | Rajat   | Analyst     | Management  | Bangalore | Wipro       |
+|     2 | Rajesh  | Developer   | Engineering | Delhi     | Infosys     |
+|     8 | Ankit   | Designer    | Engineering | Delhi     | Infosys     |
+|    14 | Anjali  | Developer   | Engineering | Delhi     | Infosys     |
+|     3 | Priya   | Analyst     | Management  | Kolkata   | Wipro       |
+|    11 | Nitin   | Analyst     | Management  | Kolkata   | Wipro       |
+|     1 | Rahul   | Manager     | Engineering | Mumbai    | TCS         |
+|     7 | Suman   | Analyst     | Management  | Mumbai    | Wipro       |
+|    13 | Ravi    | Designer    | Engineering | Mumbai    | TCS         |
+|     6 | Rahul   | Developer   | Engineering | Nashik    | TCS         |
+|     5 | Neha    | Manager     | Engineering | Pune      | Infosys     |
+|    12 | Sanjana | Designer    | Engineering | Pune      | Infosys     |
++-------+---------+-------------+-------------+-----------+-------------+
+15 rows in set (0.00 sec)
+
+
+mysql> SELECT MAX(salary) AS HighestSalary FROM Worker;
++---------------+
+| HighestSalary |
++---------------+
+|      62000.00 |
++---------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT MIN(salary) AS LowestSalary FROM Worker;
++--------------+
+| LowestSalary |
++--------------+
+|     48000.00 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> CREATE VIEW EmployeeView AS SELECT empid, empname, city FROM Employee;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT * FROM EmployeeView;
++-------+---------+-----------+
+| empid | empname | city      |
++-------+---------+-----------+
+|     1 | Rahul   | Mumbai    |
+|     2 | Rajesh  | Delhi     |
+|     3 | Priya   | Kolkata   |
+|     4 | Sneha   | Bangalore |
+|     5 | Neha    | Pune      |
+|     6 | Rahul   | Nashik    |
+|     7 | Suman   | Mumbai    |
+|     8 | Ankit   | Delhi     |
+|     9 | Snehal  | Ahmedabad |
+|    10 | Kavita  | Bangalore |
+|    11 | Nitin   | Kolkata   |
+|    12 | Sanjana | Pune      |
+|    13 | Ravi    | Mumbai    |
+|    14 | Anjali  | Delhi     |
+|    15 | Rajat   | Bangalore |
++-------+---------+-----------+
+15 rows in set (0.01 sec)
+
+mysql> CREATE VIEW EmployeeCompanyView AS SELECT e.empname, e.designation, w.CompanyName FROM Employee e INNER JOIN Worker w ON e.empname = w.empname;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SELECT * FROM EmployeeCompanyView;
++---------+-------------+-------------+
+| empname | designation | CompanyName |
++---------+-------------+-------------+
+| Rahul   | Developer   | TCS         |
+| Rahul   | Manager     | TCS         |
+| Rajesh  | Developer   | Infosys     |
+| Priya   | Analyst     | Wipro       |
+| Sneha   | Designer    | Infosys     |
+| Neha    | Manager     | Insosys     |
+| Rahul   | Developer   | TCS         |
+| Rahul   | Manager     | TCS         |
+| Suman   | Analyst     | Wipro       |
+| Ankit   | Designer    | Infosys     |
+| Snehal  | Manager     | Wipro       |
+| Kavita  | Developer   | TCS         |
+| Nitin   | Analyst     | Wipro       |
+| Sanjana | Designer    | Infosys     |
+| Ravi    | Designer    | TCS         |
+| Anjali  | Developer   | Infosys     |
+| Rajat   | Analyst     | Wipro       |
++---------+-------------+-------------+
+17 rows in set (0.01 sec)

@@ -1,0 +1,199 @@
+Queries Questions:
+
+Create Employee table with attributes empid, empname, designation, salary, age, doj, city
+1.	Insert 10 records in
+2.	Display all record
+3.	Display records whose designation is programmer 
+4.	Display Employee whose age is greater than 30 
+5.	Display employee from Nashik
+6.	Display Employee whose salary is greater than 50,000 
+7.	Display records whose joining is in 2016 
+
++-------+----------------+-------------+----------+------+------------+--------++-------+----------------+-------------+----------+------+------------+--------+
+Queries Answers:
+
+Create Employee table with attributes empid, empname, designation, salary, age, doj, city
+CREATE TABLE Employee (
+    empid INT PRIMARY KEY,
+    empname VARCHAR(255),
+    designation VARCHAR(255),
+    salary DECIMAL(10, 2),
+    age INT,
+    doj DATE,
+    city VARCHAR(255)
+);
+
+1.	Insert 10 records in
+INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES 
+(1, 'John Doe', 'Manager', 60000.00, 35, '2010-05-10', 'Pune’);
+INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES 
+(2, 'Jane Smith', 'Programmer', 55000.00, 28, '2015-02-15', 'Mumbai’);
+INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES 
+(3, 'Mike Johnson', 'Analyst', 48000.00, 32, '2012-09-20',’Nashik’);
+INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES 
+(4, 'Sarah Brown', 'Programmer', 52000.00, 30, '2014-12-05', 'Goa’);
+INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES 
+(5, 'David Lee', 'Manager', 65000.00, 38, '2008-07-18', 'Mumbai');
+INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES 
+(6, 'Emily White', 'Programmer', 56000.00, 26, '2017-04-25',’Thane’);
+INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES 
+(7, 'Chris Anderson', 'Analyst', 49000.00, 29, '2013-11-08',’Thane’);
+INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES 
+(8, 'Linda Wilson', 'Designer', 53000.00, 31, '2011-03-30', ‘Dadar’);
+INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES 
+(9, 'Kevin Martin', 'Manager', 62000.00, 37, '2009-10-15',’US’);
+INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES 
+(10, 'Amanda Taylor', 'Programmer', 58000.00, 27, '2016-06-12', 'Nashik');
+
+2.	Display all record
+SELECT * FROM Employee;
+
+3.	Display records whose designation is programmer 
+SELECT * FROM Employee
+WHERE designation = 'Programmer';
+4.	Display Employee whose age is greater than 30 
+SELECT * FROM Employee
+WHERE age > 30;
+
+5.	Display employee from Nashik
+SELECT * FROM Employee
+WHERE city = 'Nashik';
+
+6.	Display Employee whose salary is greater than 50,000 
+SELECT * FROM Employee
+WHERE salary > 50000.00;
+
+7.	Display records whose joining is in 2016 
+SELECT * FROM Employee
+WHERE doj >= '2016-01-01' AND doj <= '2016-12-31';
+
+
+
+
+
++-------+----------------+-------------+----------+------+------------+--------++-------+----------------+-------------+----------+------+------------+--------+
+OUTPUT:
+
+CREATE TABLE Employee (empid INT PRIMARY KEY, empname VARCHAR(255), designation VARCHAR(255), salary DECIMAL(10, 2), age INT, doj DATE, city VARCHAR(255));
+
+Microsoft Windows [Version 10.0.22621.2283]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\LENOVO>mysql -u root -p
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE KBTCOE;
+Query OK, 1 row affected (0.09 sec)
+
+mysql> USE KBTCOE;
+Database changed
+mysql> CREATE TABLE Employee (empid INT PRIMARY KEY, empname VARCHAR(255), designation VARCHAR(255), salary DECIMAL(10, 2), age INT, doj DATE, city VARCHAR(255));
+Query OK, 0 rows affected (0.06 sec)
+mysql> INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES (1, 'John Doe', 'Manager', 60000.00, 35, '2010-05-10', 'Pune');
+Query OK, 1 row affected (0.02 sec)
+mysql> INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES (2, 'Jane Smith', 'Programmer', 55000.00, 28, '2015-02-15', 'Mumbai');
+Query OK, 1 row affected (0.00 sec)
+mysql> INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES (3, 'Mike Johnson', 'Analyst', 48000.00, 32, '2012-09-20','Nashik');
+Query OK, 1 row affected (0.00 sec)
+mysql> INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES (4, 'Sarah Brown', 'Programmer', 52000.00, 30, '2014-12-05', 'Goa');
+Query OK, 1 row affected (0.00 sec)
+mysql> INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES (5, 'David Lee', 'Manager', 65000.00, 38, '2008-07-18', 'Mumbai');
+Query OK, 1 row affected (0.00 sec)
+mysql> INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES (6, 'Emily White', 'Programmer', 56000.00, 26, '2017-04-25','Thane');
+Query OK, 1 row affected (0.00 sec)
+mysql> INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES (7, 'Chris Anderson', 'Analyst', 49000.00, 29, '2013-11-08','Thane');
+Query OK, 1 row affected (0.00 sec)
+mysql> INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES (8, 'Linda Wilson', 'Designer', 53000.00, 31, '2011-03-30', 'Dadar');
+Query OK, 1 row affected (0.00 sec)
+mysql> INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES (9, 'Kevin Martin', 'Manager', 62000.00, 37, '2009-10-15','US');
+Query OK, 1 row affected (0.01 sec)
+mysql> INSERT INTO Employee (empid, empname, designation, salary, age, doj, city) VALUES (10, 'Amanda Taylor', 'Programmer', 58000.00, 27, '2016-06-12', 'Nashik');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM Employee;
++-------+----------------+-------------+----------+------+------------+--------+
+| empid | empname        | designation | salary   | age  | doj        | city   |
++-------+----------------+-------------+----------+------+------------+--------+
+|     1 | John Doe       | Manager     | 60000.00 |   35 | 2010-05-10 | Pune   |
+|     2 | Jane Smith     | Programmer  | 55000.00 |   28 | 2015-02-15 | Mumbai |
+|     3 | Mike Johnson   | Analyst     | 48000.00 |   32 | 2012-09-20 | Nashik |
+|     4 | Sarah Brown    | Programmer  | 52000.00 |   30 | 2014-12-05 | Goa    |
+|     5 | David Lee      | Manager     | 65000.00 |   38 | 2008-07-18 | Mumbai |
+|     6 | Emily White    | Programmer  | 56000.00 |   26 | 2017-04-25 | Thane  |
+|     7 | Chris Anderson | Analyst     | 49000.00 |   29 | 2013-11-08 | Thane  |
+|     8 | Linda Wilson   | Designer    | 53000.00 |   31 | 2011-03-30 | Dadar  |
+|     9 | Kevin Martin   | Manager     | 62000.00 |   37 | 2009-10-15 | US     |
+|    10 | Amanda Taylor  | Programmer  | 58000.00 |   27 | 2016-06-12 | Nashik |
++-------+----------------+-------------+----------+------+------------+--------+
+10 rows in set (0.01 sec)
+
+
+mysql> SELECT * FROM Employee WHERE designation = 'Programmer';
++-------+---------------+-------------+----------+------+------------+--------+
+| empid | empname       | designation | salary   | age  | doj        | city   |
++-------+---------------+-------------+----------+------+------------+--------+
+|     2 | Jane Smith    | Programmer  | 55000.00 |   28 | 2015-02-15 | Mumbai |
+|     4 | Sarah Brown   | Programmer  | 52000.00 |   30 | 2014-12-05 | Goa    |
+|     6 | Emily White   | Programmer  | 56000.00 |   26 | 2017-04-25 | Thane  |
+|    10 | Amanda Taylor | Programmer  | 58000.00 |   27 | 2016-06-12 | Nashik |
++-------+---------------+-------------+----------+------+------------+--------+
+4 rows in set (0.01 sec)
+
+
+mysql> SELECT * FROM Employee WHERE age > 30;
++-------+--------------+-------------+----------+------+------------+--------+
+| empid | empname      | designation | salary   | age  | doj        | city   |
++-------+--------------+-------------+----------+------+------------+--------+
+|     1 | John Doe     | Manager     | 60000.00 |   35 | 2010-05-10 | Pune   |
+|     3 | Mike Johnson | Analyst     | 48000.00 |   32 | 2012-09-20 | Nashik |
+|     5 | David Lee    | Manager     | 65000.00 |   38 | 2008-07-18 | Mumbai |
+|     8 | Linda Wilson | Designer    | 53000.00 |   31 | 2011-03-30 | Dadar  |
+|     9 | Kevin Martin | Manager     | 62000.00 |   37 | 2009-10-15 | US     |
++-------+--------------+-------------+----------+------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Employee WHERE city = 'Nashik';
++-------+---------------+-------------+----------+------+------------+--------+
+| empid | empname       | designation | salary   | age  | doj        | city   |
++-------+---------------+-------------+----------+------+------------+--------+
+|     3 | Mike Johnson  | Analyst     | 48000.00 |   32 | 2012-09-20 | Nashik |
+|    10 | Amanda Taylor | Programmer  | 58000.00 |   27 | 2016-06-12 | Nashik |
++-------+---------------+-------------+----------+------+------------+--------+
+2 rows in set (0.00 sec)
+
+
+
+mysql> SELECT * FROM Employee WHERE salary > 50000.00;
++-------+---------------+-------------+----------+------+------------+--------+
+| empid | empname       | designation | salary   | age  | doj        | city   |
++-------+---------------+-------------+----------+------+------------+--------+
+|     1 | John Doe      | Manager     | 60000.00 |   35 | 2010-05-10 | Pune   |
+|     2 | Jane Smith    | Programmer  | 55000.00 |   28 | 2015-02-15 | Mumbai |
+|     4 | Sarah Brown   | Programmer  | 52000.00 |   30 | 2014-12-05 | Goa    |
+|     5 | David Lee     | Manager     | 65000.00 |   38 | 2008-07-18 | Mumbai |
+|     6 | Emily White   | Programmer  | 56000.00 |   26 | 2017-04-25 | Thane  |
+|     8 | Linda Wilson  | Designer    | 53000.00 |   31 | 2011-03-30 | Dadar  |
+|     9 | Kevin Martin  | Manager     | 62000.00 |   37 | 2009-10-15 | US     |
+|    10 | Amanda Taylor | Programmer  | 58000.00 |   27 | 2016-06-12 | Nashik |
++-------+---------------+-------------+----------+------+------------+--------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Employee WHERE doj >= '2016-01-01' AND doj <= '2016-12-31';
++-------+---------------+-------------+----------+------+------------+--------+
+| empid | empname       | designation | salary   | age  | doj        | city   |
++-------+---------------+-------------+----------+------+------------+--------+
+|    10 | Amanda Taylor | Programmer  | 58000.00 |   27 | 2016-06-12 | Nashik |
++-------+---------------+-------------+----------+------+------------+--------+
+1 row in set (0.01 sec)
+

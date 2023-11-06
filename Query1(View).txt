@@ -1,0 +1,507 @@
+Queries Questions:
+
+Create table country with attributes: Countryid(primary key),Countryname
+create table Product with attributes Productid(primary key), productname,  price, quantity
+create table Employee with attributes : empidd(pk), empname, Post(salesperson or executive), salary 
+create table SalesPerson with attributes : empid(fk of Employee), ExecutiveName, Incentive
+create table Sales with attributes Countryid(fk of country), customerName, Productid(fk of product)orderdate.
+
+1. Insert 10 records and display all tables
+2. Display all employee names 
+3. Display all employee names stating with s
+4. Display all employee data having salary > 20000 and those who are excutive
+5. Display order placed between January 2023 to May 2023
+6. Display Product sold by Rahul 
+7. Display how many persons sold an electric iron
+8. Display post wise Employee details
+9. Display employee who are executive 
+10. display order placed in Germany
+11. Create view on a single table using at least 3 columns 
+12. create a view using multiple tables and display
+
+
+
++-------+----------------+-------------+----------+------+------------+--------+-------+----------------+-------------+----------+------+------------+--------+
+Queries Answers:
+
+
+Create table country with attributes: Countryid(primary key),Countryname
+create table Product with attributes Productid(primary key), productname,  price, quantity
+create table Employee with attributes : empidd(pk), empname, Post(salesperson or executive), salary 
+create table SalesPerson with attributes : empid(fk of Employee), ExecutiveName, Incentive
+create table Sales with attributes Countryid(fk of country), customerName, Productid(fk of product)orderdate
+
+CREATE TABLE Country (
+    Countryid INT PRIMARY KEY,
+    Countryname VARCHAR(255)
+);
+
+CREATE TABLE Product (
+    Productid INT PRIMARY KEY,
+    productname VARCHAR(255),
+    price DECIMAL(10, 2),
+    quantity INT
+);
+
+CREATE TABLE Employee (
+    empidd INT PRIMARY KEY,
+    empname VARCHAR(255),
+    Post VARCHAR(255),
+    salary DECIMAL(10, 2)
+);
+
+CREATE TABLE SalesPerson (
+    empid INT,
+    ExecutiveName VARCHAR(255),
+    Incentive DECIMAL(10, 2),
+    FOREIGN KEY (empid) REFERENCES Employee(empidd)
+);
+
+CREATE TABLE Sales (
+    Countryid INT,
+    customerName VARCHAR(255),
+    Productid INT,
+    orderdate DATE,
+    FOREIGN KEY (Countryid) REFERENCES Country(Countryid),
+    FOREIGN KEY (Productid) REFERENCES Product(Productid)
+);
+
+
+1. Insert 10 records and display all tables
+
+INSERT INTO Country (Countryid, Countryname)VALUES(1, 'India');
+INSERT INTO Country (Countryid, Countryname)VALUES(2, 'India');
+INSERT INTO Country (Countryid, Countryname)VALUES(3, 'USA');
+INSERT INTO Country (Countryid, Countryname)VALUES(4, 'Canada');
+INSERT INTO Country (Countryid, Countryname)VALUES(5, 'Australia');
+INSERT INTO Country (Countryid, Countryname)VALUES(6, 'India');
+INSERT INTO Country (Countryid, Countryname)VALUES(7, 'USA');
+INSERT INTO Country (Countryid, Countryname)VALUES(8, 'Canada');
+INSERT INTO Country (Countryid, Countryname)VALUES(9, 'Australia');
+INSERT INTO Country (Countryid, Countryname)VALUES(10, 'India');
+
+INSERT INTO Product (Productid, productname, price, quantity) VALUES(1, 'Laptop', 50000.00, 100);
+INSERT INTO Product (Productid, productname, price, quantity) VALUES(2, 'Mobile', 20000.00, 200);
+INSERT INTO Product (Productid, productname, price, quantity) VALUES(3, 'Tablet', 15000.00, 150);
+INSERT INTO Product (Productid, productname, price, quantity) VALUES(4, 'Monitor', 10000.00, 300);
+INSERT INTO Product (Productid, productname, price, quantity) VALUES(5, 'Keyboard', 2000.00, 500);
+INSERT INTO Product (Productid, productname, price, quantity) VALUES(6, 'Mouse', 1000.00, 800);
+INSERT INTO Product (Productid, productname, price, quantity) VALUES(7, 'Headphone', 3000.00, 400);
+INSERT INTO Product (Productid, productname, price, quantity) VALUES(8, 'Printer', 8000.00, 100);
+INSERT INTO Product (Productid, productname, price, quantity) VALUES(9, 'Speaker', 5000.00, 200);
+INSERT INTO Product (Productid, productname, price, quantity) VALUES(10, 'Electric Iron', 25000.00, 50);
+
+INSERT INTO Employee (empidd, empname, Post, salary) VALUES(1, 'Rahul', 'Salesperson', 35000.00);
+INSERT INTO Employee (empidd, empname, Post, salary) VALUES(2, 'Suresh', 'Executive', 45000.00);
+INSERT INTO Employee (empidd, empname, Post, salary) VALUES(3, 'Amit', 'Salesperson', 30000.00);
+INSERT INTO Employee (empidd, empname, Post, salary) VALUES(4, 'Rajesh', 'Executive', 50000.00);
+INSERT INTO Employee (empidd, empname, Post, salary) VALUES(5, 'Priya', 'Salesperson', 40000.00);
+INSERT INTO Employee (empidd, empname, Post, salary) VALUES(6, 'Seema', 'Executive', 55000.00);
+INSERT INTO Employee (empidd, empname, Post, salary) VALUES(7, 'Neha', 'Salesperson', 32000.00);
+INSERT INTO Employee (empidd, empname, Post, salary) VALUES(8, 'Vikram', 'Executive', 48000.00);
+INSERT INTO Employee (empidd, empname, Post, salary) VALUES(9, 'Anita', 'Salesperson', 38000.00);
+INSERT INTO Employee (empidd, empname, Post, salary) VALUES(10, 'Sachin', 'Executive', 52000.00);
+
+INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(1, 'Rahul', 5000.00);
+INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(2, 'Suresh', 7000.00);
+INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(3, 'Amit', 4000.00);
+INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(4, 'Rajesh', 8000.00);
+INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(5, 'Priya', 6000.00);
+INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(6, 'Seema', 9000.00);
+INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(7, 'Neha', 4500.00);
+INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(8, 'Vikram', 7500.00);
+INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(9, 'Anita', 5500.00);
+INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(10, 'Sachin', 8500.00);
+
+INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(1, 'Customer1', 1, '2023-01-01');
+INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(2, 'Customer2', 2, '2023-01-02');
+INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(3, 'Customer3', 3, '2023-01-03');
+INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(4, 'Customer4', 4, '2023-01-04');
+INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(5, 'Customer5', 5, '2023-01-05');
+INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(6, 'Customer6', 6, '2023-01-06');
+INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(7, 'Customer7', 7, '2023-01-07');
+INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(8, 'Customer8', 8, '2023-01-08');
+INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(9, 'Customer9', 9, '2023-01-09');
+INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(10, 'Customer10', 10, '2023-01-10');
+
+
+2. Display all employee names 
+SELECT *  FROM Employee;
+
+3. Display all employee names stating with s
+SELECT * FROM Employee WHERE empname LIKE 'S%';
+
+
+4. Display all employee data having salary > 20000 and those who are excutive
+SELECT * FROM Employee WHERE salary > 20000 AND Post = 'executive';
+
+
+5. Display order placed between January 2023 to May 2023
+SELECT * FROM Sales WHERE orderdate BETWEEN '2023-01-01' AND '2023-05-31';
+
+
+6. Display Product sold by Rahul 
+SELECT p.*
+FROM Product p
+JOIN Sales s ON p.Productid = s.Productid
+JOIN SalesPerson sp ON s.empid = sp.empid
+JOIN Employee e ON sp.empid = e.empidd
+WHERE e.empname = 'Rahul';
+
+
+7. Display how many persons sold an electric iron
+SELECT COUNT(DISTINCT sp.empid) AS TotalPersons
+FROM Sales s
+JOIN Product p ON s.Productid = p.Productid
+JOIN SalesPerson sp ON s.empid = sp.empid
+WHERE p.productname = 'Electric Iron';
+
+
+8. Display post wise Employee details
+SELECT *
+FROM Employee
+ORDER BY Post ASC;
+
+9. Display employee who are executive 
+SELECT * FROM Employee WHERE Post = 'executive';
+
+
+10. display order placed in Germany
+SELECT s.* FROM Sales s JOIN Country c ON s.Countryid = c.Countryid WHERE c.Countryname = 'Germany';
+
+
+11. Create view on a single table using at least 3 columns 
+CREATE VIEW SingleTableView AS SELECT empidd, empname, Post FROM Employee;
+
+select * from SingleTableView;
+
+12. create a view using multiple tables and display
+CREATE VIEW MultipleTableView AS 
+SELECT e.empname, s.customerName, p.productname 
+FROM Employee e JOIN SalesPerson sp ON e.empidd = sp.empid 
+JOIN Sales s ON sp.empid = s.Countryid 
+JOIN Product p ON s.Productid = p.Productid;
+
+select * from MultipleTableView;
+
+
++-------+----------------+-------------+----------+------+------------+--------+-------+----------------+-------------+----------+------+------------+--------+
+OUTPUT:
+
+CREATE TABLE Employee (empid INT PRIMARY KEY, empname VARCHAR(255), designation VARCHAR(255), salary DECIMAL(10, 2), age INT, doj DATE, city VARCHAR(255));
+
+Microsoft Windows [Version 10.0.22621.2283]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\LENOVO>mysql -u root -p
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> USE KBTCOE;
+Database changed
+
+mysql> CREATE TABLE Country (Countryid INT PRIMARY KEY, Countryname VARCHAR(255));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE Product (Productid INT PRIMARY KEY, productname VARCHAR(255), price DECIMAL(10, 2),quantity INT);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE Employee (empidd INT PRIMARY KEY,empname VARCHAR(255),Post VARCHAR(255),salary DECIMAL(10, 2));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CREATE TABLE SalesPerson (empid INT,ExecutiveName VARCHAR(255),Incentive DECIMAL(10, 2),FOREIGN KEY (empid) REFERENCES Employee(empidd));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> CREATE TABLE Sales (Countryid INT,customerName VARCHAR(255),Productid INT,orderdate DATE,FOREIGN KEY (Countryid) REFERENCES Country(Countryid),FOREIGN KEY (Productid) REFERENCES Product(Productid));
+Query OK, 0 rows affected (0.03 sec)
+
+
+mysql> INSERT INTO Country (Countryid, Countryname)VALUES(1,'India');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Country (Countryid, Countryname)VALUES(2, 'India');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO Country (Countryid, Countryname)VALUES(3, 'USA');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Country (Countryid, Countryname)VALUES(4, 'Canada');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Country (Countryid, Countryname)VALUES(5, 'Australia');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Country (Countryid, Countryname)VALUES(6, 'India');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Country (Countryid, Countryname)VALUES(7, 'USA');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Country (Countryid, Countryname)VALUES(8, 'Canada');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Country (Countryid, Countryname)VALUES(9, 'Australia');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Country (Countryid, Countryname)VALUES(10, 'India');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product (Productid, productname, price, quantity) VALUES(1, 'Laptop', 50000.00, 100);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product (Productid, productname, price, quantity) VALUES(2, 'Mobile', 20000.00, 200);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product (Productid, productname, price, quantity) VALUES(3, 'Tablet', 15000.00, 150);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product (Productid, productname, price, quantity) VALUES(4, 'Monitor', 10000.00, 300);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product (Productid, productname, price, quantity) VALUES(5, 'Keyboard', 2000.00, 500);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product (Productid, productname, price, quantity) VALUES(6, 'Mouse', 1000.00, 800);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product (Productid, productname, price, quantity) VALUES(7, 'Headphone', 3000.00, 400);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product (Productid, productname, price, quantity) VALUES(8, 'Printer', 8000.00, 100);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product (Productid, productname, price, quantity) VALUES(9, 'Speaker', 5000.00, 200);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product (Productid, productname, price, quantity) VALUES(10, 'Electric Iron', 25000.00, 50);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empidd, empname, Post, salary) VALUES(1, 'Rahul', 'Salesperson', 35000.00);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO Employee (empidd, empname, Post, salary) VALUES(2, 'Suresh', 'Executive', 45000.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empidd, empname, Post, salary) VALUES(3, 'Amit', 'Salesperson', 30000.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empidd, empname, Post, salary) VALUES(4, 'Rajesh', 'Executive', 50000.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empidd, empname, Post, salary) VALUES(5, 'Priya', 'Salesperson', 40000.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empidd, empname, Post, salary) VALUES(6, 'Seema', 'Executive', 55000.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empidd, empname, Post, salary) VALUES(7, 'Neha', 'Salesperson', 32000.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empidd, empname, Post, salary) VALUES(8, 'Vikram', 'Executive', 48000.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empidd, empname, Post, salary) VALUES(9, 'Anita', 'Salesperson', 38000.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (empidd, empname, Post, salary) VALUES(10, 'Sachin', 'Executive', 52000.00);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(1, 'Rahul', 5000.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(2, 'Suresh', 7000.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(3, 'Amit', 4000.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(4, 'Rajesh', 8000.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(5, 'Priya', 6000.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(6, 'Seema', 9000.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(7, 'Neha', 4500.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(8, 'Vikram', 7500.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(9, 'Anita', 5500.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO SalesPerson (empid, ExecutiveName, Incentive) VALUES(10, 'Sachin', 8500.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(1, 'Customer1', 1, '2023-01-01');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(2, 'Customer2', 2, '2023-01-02');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(3, 'Customer3', 3, '2023-01-03');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(4, 'Customer4', 4, '2023-01-04');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(5, 'Customer5', 5, '2023-01-05');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(6, 'Customer6', 6, '2023-01-06');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(7, 'Customer7', 7, '2023-01-07');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(8, 'Customer8', 8, '2023-01-08');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(9, 'Customer9', 9, '2023-01-09');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales (Countryid, customerName, Productid, orderdate)VALUES(10, 'Customer10', 10, '2023-01-10');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT *  FROM Employee;
++--------+---------+-------------+----------+
+| empidd | empname | Post        | salary   |
++--------+---------+-------------+----------+
+|      1 | Rahul   | Salesperson | 35000.00 |
+|      2 | Suresh  | Executive   | 45000.00 |
+|      3 | Amit    | Salesperson | 30000.00 |
+|      4 | Rajesh  | Executive   | 50000.00 |
+|      5 | Priya   | Salesperson | 40000.00 |
+|      6 | Seema   | Executive   | 55000.00 |
+|      7 | Neha    | Salesperson | 32000.00 |
+|      8 | Vikram  | Executive   | 48000.00 |
+|      9 | Anita   | Salesperson | 38000.00 |
+|     10 | Sachin  | Executive   | 52000.00 |
++--------+---------+-------------+----------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Employee WHERE empname LIKE 'S%';
++--------+---------+-----------+----------+
+| empidd | empname | Post      | salary   |
++--------+---------+-----------+----------+
+|      2 | Suresh  | Executive | 45000.00 |
+|      6 | Seema   | Executive | 55000.00 |
+|     10 | Sachin  | Executive | 52000.00 |
++--------+---------+-----------+----------+
+3 rows in set (0.01 sec)
+
+mysql> SELECT * FROM Employee WHERE salary > 20000 AND Post = 'executive';
++--------+---------+-----------+----------+
+| empidd | empname | Post      | salary   |
++--------+---------+-----------+----------+
+|      2 | Suresh  | Executive | 45000.00 |
+|      4 | Rajesh  | Executive | 50000.00 |
+|      6 | Seema   | Executive | 55000.00 |
+|      8 | Vikram  | Executive | 48000.00 |
+|     10 | Sachin  | Executive | 52000.00 |
++--------+---------+-----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Sales WHERE orderdate BETWEEN '2023-01-01' AND '2023-05-31';
++-----------+--------------+-----------+------------+
+| Countryid | customerName | Productid | orderdate  |
++-----------+--------------+-----------+------------+
+|         1 | Customer1    |         1 | 2023-01-01 |
+|         2 | Customer2    |         2 | 2023-01-02 |
+|         3 | Customer3    |         3 | 2023-01-03 |
+|         4 | Customer4    |         4 | 2023-01-04 |
+|         5 | Customer5    |         5 | 2023-01-05 |
+|         6 | Customer6    |         6 | 2023-01-06 |
+|         7 | Customer7    |         7 | 2023-01-07 |
+|         8 | Customer8    |         8 | 2023-01-08 |
+|         9 | Customer9    |         9 | 2023-01-09 |
+|        10 | Customer10   |        10 | 2023-01-10 |
++-----------+--------------+-----------+------------+
+10 rows in set (0.01 sec)
+
+mysql> SELECT * FROM Employee ORDER BY Post ASC;
++--------+---------+-------------+----------+
+| empidd | empname | Post        | salary   |
++--------+---------+-------------+----------+
+|      2 | Suresh  | Executive   | 45000.00 |
+|      4 | Rajesh  | Executive   | 50000.00 |
+|      6 | Seema   | Executive   | 55000.00 |
+|      8 | Vikram  | Executive   | 48000.00 |
+|     10 | Sachin  | Executive   | 52000.00 |
+|      1 | Rahul   | Salesperson | 35000.00 |
+|      3 | Amit    | Salesperson | 30000.00 |
+|      5 | Priya   | Salesperson | 40000.00 |
+|      7 | Neha    | Salesperson | 32000.00 |
+|      9 | Anita   | Salesperson | 38000.00 |
++--------+---------+-------------+----------+
+10 rows in set (0.00 sec)
+
+
+mysql> SELECT * FROM Employee WHERE Post = 'executive';
++--------+---------+-----------+----------+
+| empidd | empname | Post      | salary   |
++--------+---------+-----------+----------+
+|      2 | Suresh  | Executive | 45000.00 |
+|      4 | Rajesh  | Executive | 50000.00 |
+|      6 | Seema   | Executive | 55000.00 |
+|      8 | Vikram  | Executive | 48000.00 |
+|     10 | Sachin  | Executive | 52000.00 |
++--------+---------+-----------+----------+
+5 rows in set (0.00 sec)
+
+
+mysql> SELECT s.* FROM Sales s JOIN Country c ON s.Countryid = c.Countryid WHERE c.Countryname = 'Germany';
+Empty set (0.01 sec)
+
+mysql> CREATE VIEW SingleTableView AS SELECT empidd, empname, Post FROM Employee;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from SingleTableView;
++--------+---------+-------------+
+| empidd | empname | Post        |
++--------+---------+-------------+
+|      1 | Rahul   | Salesperson |
+|      2 | Suresh  | Executive   |
+|      3 | Amit    | Salesperson |
+|      4 | Rajesh  | Executive   |
+|      5 | Priya   | Salesperson |
+|      6 | Seema   | Executive   |
+|      7 | Neha    | Salesperson |
+|      8 | Vikram  | Executive   |
+|      9 | Anita   | Salesperson |
+|     10 | Sachin  | Executive   |
++--------+---------+-------------+
+10 rows in set (0.00 sec)
+
+mysql> CREATE VIEW MultipleTableView AS SELECT e.empname, s.customerName, p.productname FROM Employee e JOIN SalesPerson sp ON e.empidd = sp.empid JOIN Sales s ON sp.empid = s.Countryid JOIN Product p ON s.Productid = p.Productid;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from MultipleTableView;
++---------+--------------+---------------+
+| empname | customerName | productname   |
++---------+--------------+---------------+
+| Rahul   | Customer1    | Laptop        |
+| Suresh  | Customer2    | Mobile        |
+| Amit    | Customer3    | Tablet        |
+| Rajesh  | Customer4    | Monitor       |
+| Priya   | Customer5    | Keyboard      |
+| Seema   | Customer6    | Mouse         |
+| Neha    | Customer7    | Headphone     |
+| Vikram  | Customer8    | Printer       |
+| Anita   | Customer9    | Speaker       |
+| Sachin  | Customer10   | Electric Iron |
++---------+--------------+---------------+
+10 rows in set (0.00 sec)

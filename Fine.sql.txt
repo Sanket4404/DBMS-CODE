@@ -1,0 +1,40 @@
+DECLARE
+  roll_no Borrower.Roll_no%TYPE:= &roll_no; 
+  book_name Borrower.Name_of_Book%TYPE'&book_name';
+  issue_date Borrower.Date_of_Issue%TYPE;
+  status Borrower.Status%TYPE;
+  days_late NUMBER;
+  fine_amt NUMBER;
+
+BEGIN
+  SELECT Date_of_Issue, Status
+  INTO issue_date, status
+  FROM Borrower
+  WHERE Roll_no = roll_no AND Name_of_Book = book_name;
+
+  days_late := TRUNC(SYSDATE) - TRUNC(issue_date);
+
+  IF days_late > 15 and days_late < 30 THEN
+    fine_amt := days_late * 5;
+  ELSIF days_late > 30 THEN 
+    fine_amt := (15 * 5) + ((days_late - 30) * 50); 
+  END IF;
+
+  UPDATE Borrower
+  SET Status = 'R'
+  WHERE Roll_no = roll_no AND Name_of_Book = book_name;
+
+  INSERT INTO Fine (Roll_no, Date, Amt)
+  VALUES (roll_no, SYSDATE, fine_amt);
+
+
+  DBMS_OUTPUT.PUT_LINE('Fine amount: Rs ' || fine_amt);
+
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    DBMS_OUTPUT.PUT_LINE('Borrower not found.');
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
+
+END;
+/

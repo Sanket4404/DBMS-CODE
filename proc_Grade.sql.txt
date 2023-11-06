@@ -1,0 +1,14 @@
+CREATE OR REPLACE PROCEDURE proc_Grade (
+    total_marks IN NUMBER,
+    class OUT VARCHAR2
+) AS
+BEGIN
+    IF total_marks >= 990 AND total_marks <= 1500 THEN
+        class := 'Distinction';
+    ELSIF p_total_marks >= 900 AND p_total_marks <= 989 THEN
+        class := 'First Class';
+    ELSIF p_total_marks >= 825 AND p_total_marks <= 899 THEN
+        class := 'Higher Second Class';
+    END IF;    
+END;
+/

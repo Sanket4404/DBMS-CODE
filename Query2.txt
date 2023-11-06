@@ -1,0 +1,262 @@
+Queries Questions:
+
+Create table student attributes RollNo, KBTID, Name, Branch, Place, DOA, class, Age check>8 
+
+1. Insert 10 record and display All Records
+
+2.  Delete from student where rollno=10
+
+3. update student set place = 'Nashik' where rollno=6
+
+4. Display total student who took admission in 2020 
+
+5. Display students from computer branch and those who are from Nashik
+
+6. Display student from TE class having age > 20
+
+7. Delete record of student from Mechanical Branch 
+
+8. Update place of Student from nashik to nashikRoad 
+
+9. Display student from IT or Civil branch 
+
+10. Display the record in ascending order by student name 
+
+11. Delete record of student who look addimission in 2023 
+
++-------+----------------+-------------+----------+------+------------+--------+-------+----------------+-------------+----------+------+------------+--------+
+Queries Answers:
+
+Create table student attributes RollNo, KBTID, Name, Branch, Place, DOA, class, Age check>8 
+
+CREATE TABLE student (
+    RollNo INT PRIMARY KEY,
+    KBTID VARCHAR(255),
+    Name VARCHAR(255),
+    Branch VARCHAR(255),
+    Place VARCHAR(255),
+    DOA DATE,
+    Class VARCHAR(2),
+    Age INT CHECK (Age > 8)
+);
+
+1. Insert 10 record and display All Records
+INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES
+(1, 'KBTUG20200', 'Rahul', 'COMPUTER', 'Mumbai', '2020-01-15', 'BE', 10);
+INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES
+(2, 'KBTUG23201', 'Priya', 'CIVIL', 'Delhi', '2023-01-20', 'FE', 9);
+INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES
+(3, 'KBTUG23202', 'Amit', 'IT', 'Kolkata', '2023-02-10', 'FE', 9);
+INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES
+(4, 'KBTUG22203', 'Sneha', 'MECHANICAL', 'Chennai', '2022-02-15', 'TE', 9);
+INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES
+(5, 'KBTUG21204', 'Vikram', 'ELECTRICAL', 'Bengaluru', '2021-03-01', 'SE', 10);
+INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES
+(6, 'KBTUG22205', 'Neha', 'COMPUTER', 'Nashik', '2022-03-10', 'TE', 10);
+INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES
+(7, 'KBTUG23206', 'Kiran', 'CIVIL', 'Pune', '2023-03-15', 'FE', 9);
+INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES
+(8, 'KBTUG20207', 'Anita', 'IT', 'Nashik', '2020-04-01', 'BE', 10);
+INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES
+(9, 'KBTUG21208', 'Rajesh', 'MECHANICAL', 'Jaipur', '2021-04-10', 'TE', 9);
+INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES
+(10, 'KBTUG22209', 'Arjun', 'COMPUTER', 'Hyderabad', '2022-04-15', 'SE', 22);
+
+select * from Student;
+
+
+2.  Delete from student where rollno=10
+DELETE FROM student WHERE RollNo = 10;
+
+3. update student set place = 'Nashik' where rollno=6
+UPDATE student
+SET Place = 'Nashik'
+WHERE RollNo = 6;
+
+4. Display total student who took admission in 2020 
+SELECT * FROM student
+WHERE DOA >= '2020-01-01' AND DOA <= '2020-12-31';
+
+5. Display students from computer branch and those who are from Nashik
+SELECT * FROM student WHERE Branch = 'COMPUTER' AND Place = 'Nashik';
+
+6. Display student from TE class having age > 20
+SELECT * FROM student WHERE Class = 'TE' AND Age > 20;
+
+7. Delete record of student from Mechanical Branch 
+DELETE FROM student WHERE Branch = 'Mechanical';
+
+8. Update place of Student from nashik to nashikRoad 
+UPDATE student SET Place = 'NashikRoad' WHERE Place = 'Nashik';
+
+9. Display student from IT or Civil branch 
+SELECT * FROM student WHERE Branch IN ('IT', 'Civil');
+
+10. Display the record in ascending order by student name 
+SELECT * FROM student ORDER BY Name ASC;
+
+11. Delete record of student who look addimission in 2023 
+DELETE FROM student WHERE DOA >= '2023-01-01' AND DOA <= '2023-12-31';
+
+
++-------+----------------+-------------+----------+------+------------+--------+-------+----------------+-------------+----------+------+------------+--------+
+OUTPUT:
+
+CREATE TABLE Employee (empid INT PRIMARY KEY, empname VARCHAR(255), designation VARCHAR(255), salary DECIMAL(10, 2), age INT, doj DATE, city VARCHAR(255));
+
+Microsoft Windows [Version 10.0.22621.2283]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\LENOVO>mysql -u root -p
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> USE KBTCOE;
+Database changed
+
+
+
+mysql> CREATE TABLE student (RollNo INT PRIMARY KEY, KBTID VARCHAR(255), Name VARCHAR(255), Branch VARCHAR(255), Place VARCHAR(255), DOA DATE, Class VARCHAR(2), Age INT CHECK (Age > 8));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES(1, 'KBTUG20200', 'Rahul', 'COMPUTER', 'Mumbai', '2020-01-15', 'BE', 10);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES(2, 'KBTUG23201', 'Priya', 'CIVIL', 'Delhi', '2023-01-20', 'FE', 9);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES(3, 'KBTUG23202', 'Amit', 'IT', 'Kolkata', '2023-02-10', 'FE', 9);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES(4, 'KBTUG22203', 'Sneha', 'MECHANICAL', 'Chennai', '2022-02-15', 'TE', 9);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES(5, 'KBTUG21204', 'Vikram', 'ELECTRICAL', 'Bengaluru', '2021-03-01', 'SE', 10);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES(6, 'KBTUG22205', 'Neha', 'COMPUTER', 'Nashik', '2022-03-10', 'TE', 10);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES(7, 'KBTUG23206', 'Kiran', 'CIVIL', 'Pune', '2023-03-15', 'FE', 9);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES(8, 'KBTUG20207', 'Anita', 'IT', 'Nashik', '2020-04-01', 'BE', 10);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES(9, 'KBTUG21208', 'Rajesh', 'MECHANICAL', 'Jaipur', '2021-04-10', 'TE', 9);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO student (RollNo, KBTID, Name, Branch, Place, DOA, Class, Age) VALUES(10, 'KBTUG22209', 'Arjun', 'COMPUTER', 'Hyderabad', '2022-04-15', 'SE', 22);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++--------+------------+--------+------------+-----------+------------+-------+------+
+| RollNo | KBTID      | Name   | Branch     | Place     | DOA        | Class | Age  |
++--------+------------+--------+------------+-----------+------------+-------+------+
+|      1 | KBTUG20200 | Rahul  | COMPUTER   | Mumbai    | 2020-01-15 | BE    |   10 |
+|      2 | KBTUG23201 | Priya  | CIVIL      | Delhi     | 2023-01-20 | FE    |    9 |
+|      3 | KBTUG23202 | Amit   | IT         | Kolkata   | 2023-02-10 | FE    |    9 |
+|      4 | KBTUG22203 | Sneha  | MECHANICAL | Chennai   | 2022-02-15 | TE    |    9 |
+|      5 | KBTUG21204 | Vikram | ELECTRICAL | Bengaluru | 2021-03-01 | SE    |   10 |
+|      6 | KBTUG22205 | Neha   | COMPUTER   | Nashik    | 2022-03-10 | TE    |   10 |
+|      7 | KBTUG23206 | Kiran  | CIVIL      | Pune      | 2023-03-15 | FE    |    9 |
+|      8 | KBTUG20207 | Anita  | IT         | Nashik    | 2020-04-01 | BE    |   10 |
+|      9 | KBTUG21208 | Rajesh | MECHANICAL | Jaipur    | 2021-04-10 | TE    |    9 |
++--------+------------+--------+------------+-----------+------------+-------+------+
+9 rows in set (0.00 sec)
+
+DELETE FROM student WHERE RollNo = 10;
+Query OK, 1 row affected (0.01 sec)
+
+
+mysql> UPDATE student SET Place = 'Nashik' WHERE RollNo = 6;
+Query OK, 0 rows affected (0.01 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+
+mysql> SELECT * FROM student WHERE DOA >= '2020-01-01' AND DOA <= '2020-12-31';
++--------+------------+-------+----------+--------+------------+-------+------+
+| RollNo | KBTID      | Name  | Branch   | Place  | DOA        | Class | Age  |
++--------+------------+-------+----------+--------+------------+-------+------+
+|      1 | KBTUG20200 | Rahul | COMPUTER | Mumbai | 2020-01-15 | BE    |   10 |
+|      8 | KBTUG20207 | Anita | IT       | Nashik | 2020-04-01 | BE    |   10 |
++--------+------------+-------+----------+--------+------------+-------+------+
+2 rows in set (0.00 sec)
+
+
+mysql> SELECT * FROM student WHERE Branch = 'COMPUTER' AND Place = 'Nashik';
++--------+------------+------+----------+--------+------------+-------+------+
+| RollNo | KBTID      | Name | Branch   | Place  | DOA        | Class | Age  |
++--------+------------+------+----------+--------+------------+-------+------+
+|      6 | KBTUG22205 | Neha | COMPUTER | Nashik | 2022-03-10 | TE    |   10 |
++--------+------------+------+----------+--------+------------+-------+------+
+1 row in set (0.00 sec)
+
+
+
+mysql> SELECT * FROM student WHERE Class = 'TE' AND Age > 20;
+Empty set (0.00 sec)
+
+
+
+mysql> DELETE FROM student WHERE Branch = 'Mechanical';
+Query OK, 2 rows affected (0.01 sec)
+
+mysql> UPDATE student SET Place = 'NashikRoad' WHERE Place = 'Nashik';
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM student WHERE Branch IN ('IT', 'Civil');
++--------+------------+-------+--------+------------+------------+-------+------+
+| RollNo | KBTID      | Name  | Branch | Place      | DOA        | Class | Age  |
++--------+------------+-------+--------+------------+------------+-------+------+
+|      2 | KBTUG23201 | Priya | CIVIL  | Delhi      | 2023-01-20 | FE    |    9 |
+|      3 | KBTUG23202 | Amit  | IT     | Kolkata    | 2023-02-10 | FE    |    9 |
+|      7 | KBTUG23206 | Kiran | CIVIL  | Pune       | 2023-03-15 | FE    |    9 |
+|      8 | KBTUG20207 | Anita | IT     | NashikRoad | 2020-04-01 | BE    |   10 |
++--------+------------+-------+--------+------------+------------+-------+------+
+4 rows in set (0.01 sec)
+
+
+
+mysql> SELECT * FROM student ORDER BY Name ASC;
++--------+------------+--------+------------+------------+------------+-------+------+
+| RollNo | KBTID      | Name   | Branch     | Place      | DOA        | Class | Age  |
++--------+------------+--------+------------+------------+------------+-------+------+
+|      3 | KBTUG23202 | Amit   | IT         | Kolkata    | 2023-02-10 | FE    |    9 |
+|      8 | KBTUG20207 | Anita  | IT         | NashikRoad | 2020-04-01 | BE    |   10 |
+|      7 | KBTUG23206 | Kiran  | CIVIL      | Pune       | 2023-03-15 | FE    |    9 |
+|      6 | KBTUG22205 | Neha   | COMPUTER   | NashikRoad | 2022-03-10 | TE    |   10 |
+|      2 | KBTUG23201 | Priya  | CIVIL      | Delhi      | 2023-01-20 | FE    |    9 |
+|      1 | KBTUG20200 | Rahul  | COMPUTER   | Mumbai     | 2020-01-15 | BE    |   10 |
+|      5 | KBTUG21204 | Vikram | ELECTRICAL | Bengaluru  | 2021-03-01 | SE    |   10 |
++--------+------------+--------+------------+------------+------------+-------+------+
+7 rows in set (0.01 sec)
+
+
+
+mysql> DELETE FROM student WHERE DOA >= '2023-01-01' AND DOA <= '2023-12-31';
+Query OK, 3 rows affected (0.00 sec)
+
+
+mysql> select * from student;
++--------+------------+--------+------------+------------+------------+-------+------+
+| RollNo | KBTID      | Name   | Branch     | Place      | DOA        | Class | Age  |
++--------+------------+--------+------------+------------+------------+-------+------+
+|      1 | KBTUG20200 | Rahul  | COMPUTER   | Mumbai     | 2020-01-15 | BE    |   10 |
+|      5 | KBTUG21204 | Vikram | ELECTRICAL | Bengaluru  | 2021-03-01 | SE    |   10 |
+|      6 | KBTUG22205 | Neha   | COMPUTER   | NashikRoad | 2022-03-10 | TE    |   10 |
+|      8 | KBTUG20207 | Anita  | IT         | NashikRoad | 2020-04-01 | BE    |   10 |
++--------+------------+--------+------------+------------+------------+-------+------+
+4 rows in set (0.00 sec)
+

@@ -1,0 +1,341 @@
+Queries Questions:
+
+Create table Product details with attribues Productid(PK), pname, TotalQuantities , Price
+Create table Sales details with attributes Salesid(pk), Productid(FK of product), Available qunatities, price, CustomerName;
+
+1. Insert 15 Records in Product table and 10 Records in Sales table 
+2. Perform Inner join, Left join, right Join and Full Join on Both table
+3. Select Distinct Product Name 
+4. Create a backup table for product details
+5. Insert into backup table using subquery
+6. Update backup table using subquery
+7. Delete from backup table using subquery
+8. Apply union Operation on Product and sale stable
+9. Apply union all Operation on Product and sale stable
+10. Create index on Procut table and show index
+
+
++-------+----------------+-------------+----------+------+------------+--------+-------+----------------+-------------+----------+------+------------+--------+
+Queries Answers:
+
+
+Create table Product details with attribues Productid(PK), pname, TotalQuantities , Price
+Create table Sales details with attributes Salesid(pk), Productid(FK of product), Available qunatities, price, CustomerName;
+
+CREATE TABLE Product_details (
+    Productid INT PRIMARY KEY,
+    pname VARCHAR(255),
+    TotalQuantities INT,
+    Price DECIMAL(10, 2)
+);
+
+CREATE TABLE Sales_details (
+    Salesid INT PRIMARY KEY,
+    Productid INT,
+    AvailableQuantities INT,
+    Price DECIMAL(10, 2),
+    CustomerName VARCHAR(255),
+    FOREIGN KEY (Productid) REFERENCES Product_details(Productid)
+);
+
+
+1. Insert 15 Records in Product table and 10 Records in Sales table 
+
+INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (1, 'Milk', 100, 25.00);
+INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (2, 'Rice', 150, 60.00);
+INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (3, 'Bread', 200, 30.00);
+INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (4, 'Sugar', 120, 45.00);
+INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (5, 'Salt', 180, 20.00);
+INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (6, 'Tea', 90, 70.00);
+INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (7, 'Coffee', 100, 80.00);
+INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (8, 'Cooking Oil', 80, 100.00);
+INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (9, 'Wheat Flour', 200, 35.00);
+INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (10, 'Dal', 150, 55.00);
+INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (11, 'Onion', 80, 15.00);
+INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (12, 'Tomato', 100, 25.00);
+INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (13, 'Potato', 120, 20.00);
+INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (14, 'Egg', 200, 7.00);
+INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (15, 'Banana', 300, 40.00);
+
+
+INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (1, 1, 50, 30.00, 'Rahul');
+INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (2, 2, 70, 70.00, 'Suresh');
+INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (3, 3, 80, 35.00, 'Amit');
+INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (4, 4, 50, 50.00, 'Rajesh');
+INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (5, 5, 90, 25.00, 'Priya');
+INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (6, 6, 40, 80.00, 'Seema');
+INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (7, 7, 60, 90.00, 'Neha');
+INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (8, 8, 30, 120.00, 'Vikram');
+INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (9, 9, 100, 40.00, 'Anita');
+INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (10, 10, 80, 60.00, 'Sachin');
+
+
+
+2. Perform Inner join, Left join, right Join and Full Join on Both table
+SELECT * FROM Product_details
+INNER JOIN Sales_details
+ON Product_details.Productid = Sales_details.Productid;
+
+SELECT * FROM Product_details
+LEFT JOIN Sales_details
+ON Product_details.Productid = Sales_details.Productid;
+
+SELECT * FROM Product_details
+RIGHT JOIN Sales_details
+ON Product_details.Productid = Sales_details.Productid;
+
+SELECT * FROM Product_details
+FULL JOIN Sales_details
+ON Product_details.Productid = Sales_details.Productid;
+
+
+3. Select Distinct Product Name 
+SELECT DISTINCT pname FROM Product_details;
+
+
+4. Create a backup table for product details
+CREATE TABLE Product_details_backup LIKE Product_details;
+
+
+5. Insert into backup table using subquery
+INSERT INTO Product_details_backup
+SELECT * FROM Product_details;
+
+
+6. Update backup table using subquery
+UPDATE Product_details_backup
+SET Price = Price * 1.1; 
+
+
+7. Delete from backup table using subquery
+DELETE FROM Product_details_backup
+WHERE Price > 100; 
+
+
+8. Apply union Operation on Product and sale stable
+SELECT * FROM Product_details UNION SELECT * FROM Sales_details;
+
+
+9. Apply union all Operation on Product and sale stable
+SELECT * FROM Product_details UNION ALL SELECT * FROM Sales_details;
+
+
+10. Create index on Procut table and show index
+CREATE INDEX product_index ON Product_details(Productid);
+
+SHOW INDEX FROM Product_details;
+
+
+
++-------+----------------+-------------+----------+------+------------+--------+-------+----------------+-------------+----------+------+------------+--------+
+OUTPUT:
+
+CREATE TABLE Employee (empid INT PRIMARY KEY, empname VARCHAR(255), designation VARCHAR(255), salary DECIMAL(10, 2), age INT, doj DATE, city VARCHAR(255));
+
+Microsoft Windows [Version 10.0.22621.2283]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\LENOVO>mysql -u root -p
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> USE KBTCOE;
+Database changed
+
+
+mysql> CREATE TABLE Product_details (Productid INT PRIMARY KEY,pname VARCHAR(255),TotalQuantities INT,Price DECIMAL(10, 2));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE Sales_details (Salesid INT PRIMARY KEY,Productid INT,AvailableQuantities INT,Price DECIMAL(10, 2),CustomerName VARCHAR(255),FOREIGN KEY (Productid) REFERENCES Product_details(Productid));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (1, 'Milk', 100, 25.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (2, 'Rice', 150, 60.00);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (3, 'Bread', 200, 30.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (4, 'Sugar', 120, 45.00);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (5, 'Salt', 180, 20.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (6, 'Tea', 90, 70.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (7, 'Coffee', 100, 80.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (8, 'Cooking Oil', 80, 100.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (9, 'Wheat Flour', 200, 35.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (10, 'Dal', 150, 55.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (11, 'Onion', 80, 15.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (12, 'Tomato', 100, 25.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (13, 'Potato', 120, 20.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (14, 'Egg', 200, 7.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product_details (Productid, pname, TotalQuantities, Price)VALUES (15, 'Banana', 300, 40.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (1, 1, 50, 30.00, 'Rahul');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (2, 2, 70, 70.00, 'Suresh');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (3, 3, 80, 35.00, 'Amit');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (4, 4, 50, 50.00, 'Rajesh');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (5, 5, 90, 25.00, 'Priya');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (6, 6, 40, 80.00, 'Seema');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (7, 7, 60, 90.00, 'Neha');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (8, 8, 30, 120.00, 'Vikram');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (9, 9, 100, 40.00, 'Anita');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Sales_details (Salesid, Productid, AvailableQuantities, Price, CustomerName) VALUES (10, 10, 80, 60.00, 'Sachin');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM Product_details INNER JOIN Sales_details ON Product_details.Productid = Sales_details.Productid;
++-----------+-------------+-----------------+--------+---------+-----------+---------------------+--------+--------------+
+| Productid | pname       | TotalQuantities | Price  | Salesid | Productid | AvailableQuantities | Price  | CustomerName |
++-----------+-------------+-----------------+--------+---------+-----------+---------------------+--------+--------------+
+|         1 | Milk        |             100 |  25.00 |       1 |         1 |                  50 |  30.00 | Rahul        |
+|         2 | Rice        |             150 |  60.00 |       2 |         2 |                  70 |  70.00 | Suresh       |
+|         3 | Bread       |             200 |  30.00 |       3 |         3 |                  80 |  35.00 | Amit         |
+|         4 | Sugar       |             120 |  45.00 |       4 |         4 |                  50 |  50.00 | Rajesh       |
+|         5 | Salt        |             180 |  20.00 |       5 |         5 |                  90 |  25.00 | Priya        |
+|         6 | Tea         |              90 |  70.00 |       6 |         6 |                  40 |  80.00 | Seema        |
+|         7 | Coffee      |             100 |  80.00 |       7 |         7 |                  60 |  90.00 | Neha         |
+|         8 | Cooking Oil |              80 | 100.00 |       8 |         8 |                  30 | 120.00 | Vikram       |
+|         9 | Wheat Flour |             200 |  35.00 |       9 |         9 |                 100 |  40.00 | Anita        |
+|        10 | Dal         |             150 |  55.00 |      10 |        10 |                  80 |  60.00 | Sachin       |
++-----------+-------------+-----------------+--------+---------+-----------+---------------------+--------+--------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Product_details LEFT JOIN Sales_details ON Product_details.Productid = Sales_details.Productid;
++-----------+-------------+-----------------+--------+---------+-----------+---------------------+--------+--------------+
+| Productid | pname       | TotalQuantities | Price  | Salesid | Productid | AvailableQuantities | Price  | CustomerName |
++-----------+-------------+-----------------+--------+---------+-----------+---------------------+--------+--------------+
+|         1 | Milk        |             100 |  25.00 |       1 |         1 |                  50 |  30.00 | Rahul        |
+|         2 | Rice        |             150 |  60.00 |       2 |         2 |                  70 |  70.00 | Suresh       |
+|         3 | Bread       |             200 |  30.00 |       3 |         3 |                  80 |  35.00 | Amit         |
+|         4 | Sugar       |             120 |  45.00 |       4 |         4 |                  50 |  50.00 | Rajesh       |
+|         5 | Salt        |             180 |  20.00 |       5 |         5 |                  90 |  25.00 | Priya        |
+|         6 | Tea         |              90 |  70.00 |       6 |         6 |                  40 |  80.00 | Seema        |
+|         7 | Coffee      |             100 |  80.00 |       7 |         7 |                  60 |  90.00 | Neha         |
+|         8 | Cooking Oil |              80 | 100.00 |       8 |         8 |                  30 | 120.00 | Vikram       |
+|         9 | Wheat Flour |             200 |  35.00 |       9 |         9 |                 100 |  40.00 | Anita        |
+|        10 | Dal         |             150 |  55.00 |      10 |        10 |                  80 |  60.00 | Sachin       |
+|        11 | Onion       |              80 |  15.00 |    NULL |      NULL |                NULL |   NULL | NULL         |
+|        12 | Tomato      |             100 |  25.00 |    NULL |      NULL |                NULL |   NULL | NULL         |
+|        13 | Potato      |             120 |  20.00 |    NULL |      NULL |                NULL |   NULL | NULL         |
+|        14 | Egg         |             200 |   7.00 |    NULL |      NULL |                NULL |   NULL | NULL         |
+|        15 | Banana      |             300 |  40.00 |    NULL |      NULL |                NULL |   NULL | NULL         |
++-----------+-------------+-----------------+--------+---------+-----------+---------------------+--------+--------------+
+15 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Product_details RIGHT JOIN Sales_details ON Product_details.Productid = Sales_details.Productid;
++-----------+-------------+-----------------+--------+---------+-----------+---------------------+--------+--------------+
+| Productid | pname       | TotalQuantities | Price  | Salesid | Productid | AvailableQuantities | Price  | CustomerName |
++-----------+-------------+-----------------+--------+---------+-----------+---------------------+--------+--------------+
+|         1 | Milk        |             100 |  25.00 |       1 |         1 |                  50 |  30.00 | Rahul        |
+|         2 | Rice        |             150 |  60.00 |       2 |         2 |                  70 |  70.00 | Suresh       |
+|         3 | Bread       |             200 |  30.00 |       3 |         3 |                  80 |  35.00 | Amit         |
+|         4 | Sugar       |             120 |  45.00 |       4 |         4 |                  50 |  50.00 | Rajesh       |
+|         5 | Salt        |             180 |  20.00 |       5 |         5 |                  90 |  25.00 | Priya        |
+|         6 | Tea         |              90 |  70.00 |       6 |         6 |                  40 |  80.00 | Seema        |
+|         7 | Coffee      |             100 |  80.00 |       7 |         7 |                  60 |  90.00 | Neha         |
+|         8 | Cooking Oil |              80 | 100.00 |       8 |         8 |                  30 | 120.00 | Vikram       |
+|         9 | Wheat Flour |             200 |  35.00 |       9 |         9 |                 100 |  40.00 | Anita        |
+|        10 | Dal         |             150 |  55.00 |      10 |        10 |                  80 |  60.00 | Sachin       |
++-----------+-------------+-----------------+--------+---------+-----------+---------------------+--------+--------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT pname FROM Product_details;
++-------------+
+| pname       |
++-------------+
+| Milk        |
+| Rice        |
+| Bread       |
+| Sugar       |
+| Salt        |
+| Tea         |
+| Coffee      |
+| Cooking Oil |
+| Wheat Flour |
+| Dal         |
+| Onion       |
+| Tomato      |
+| Potato      |
+| Egg         |
+| Banana      |
++-------------+
+15 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Product_details_backup LIKE Product_details;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO Product_details_backup SELECT * FROM Product_details;
+Query OK, 15 rows affected (0.01 sec)
+Records: 15  Duplicates: 0  Warnings: 0
+
+mysql> UPDATE Product_details_backup SET Price = Price * 1.1;
+Query OK, 15 rows affected (0.01 sec)
+Rows matched: 15  Changed: 15  Warnings: 0
+
+mysql> DELETE FROM Product_details_backup WHERE Price > 100;
+Query OK, 1 row affected (0.05 sec)
+
+
+mysql> CREATE INDEX product_index ON Product_details(Productid);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SHOW INDEX FROM Product_details;
++-----------------+------------+---------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table           | Non_unique | Key_name      | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++-----------------+------------+---------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| product_details |          0 | PRIMARY       |            1 | Productid   | A         |          14 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| product_details |          1 | product_index |            1 | Productid   | A         |          15 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
++-----------------+------------+---------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+2 rows in set (0.03 sec)

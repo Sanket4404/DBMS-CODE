@@ -1,0 +1,21 @@
+DECLARE
+    roll NUMBER=&Roll;
+    student_name VARCHAR2(100) :=’&Name’;
+    student_marks NUMBER;
+    class VARCHAR2(50);
+BEGIN
+
+    SELECT total_Marks
+    INTO student_marks
+    FROM Stud_Marks
+    WHERE RollNo = roll
+    AND Name = student_name;
+
+    proc_Grade(student_marks, class);
+
+    INSERT INTO Result (Roll, Name, Class)
+    VALUES (roll, student_name, class);
+     
+    DBMS_OUTPUT.PUT_LINE('RollNO:  ' || roll || 'Student:  ' || student_name || 'Grade:  ' || class);
+END;
+/
